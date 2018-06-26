@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package test;
+
+message SomeStruct{
+  int32 A = 1;
+  string B = 2;
+}

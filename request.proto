@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package protos;
+
+import "session.proto";
+import "msg.proto";
+
+enum RPCType {
+  Sys = 0;
+  User = 1;
+}
+
+message Request {
+  RPCType type = 1;
+  Session session = 2;
+  Msg msg = 3;
+  string frontendID = 4;
+  bytes metadata = 5;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package protos;
+
+message Push {
+  string route = 1;
+  string uid = 2;
+  bytes data = 3;
+}

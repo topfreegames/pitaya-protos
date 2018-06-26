@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package protos;
+
+enum MsgType {
+  MsgRequest = 0;
+  MsgNotify = 1;
+  MsgResponse = 2;
+  MsgPush = 3;
+}
+
+message Msg {
+  uint64 id = 1;
+  string route = 2;
+  bytes data = 3;
+  string reply = 4;
+  MsgType type = 5;
+}

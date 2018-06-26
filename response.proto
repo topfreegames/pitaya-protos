@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package protos;
+
+import "error.proto";
+
+message Response {
+  bytes data = 1;
+  Error error = 2;
+}

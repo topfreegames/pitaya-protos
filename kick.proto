@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package protos;
+
+message KickMsg {
+  string userId = 1;
+}
+
+message KickAnswer {
+  bool kicked = 1;
+}
