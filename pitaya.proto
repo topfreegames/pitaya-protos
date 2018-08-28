@@ -6,9 +6,11 @@ import "request.proto";
 import "response.proto";
 import "push.proto";
 import "bind.proto";
+import "kick.proto";
 
 service Pitaya {
   rpc Call(Request) returns (Response) {}
   rpc PushToUser(Push) returns (Response) {}
   rpc SessionBindRemote(BindMsg) returns (Response) {}
+  rpc KickUser(KickMsg) returns (KickAnswer) {}
 }
