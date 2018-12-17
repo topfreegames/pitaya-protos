@@ -10,3 +10,11 @@ message ProtoDescriptor {
 message ProtoName {
     string name = 1;
 }
+
+message ProtoDescriptors {
+    repeated bytes desc = 1;
+}
+
+message ProtoNames {
+    repeated string name = 1;
+}
