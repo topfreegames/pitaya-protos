@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package protos;
-option csharp_namespace = "Pitaya.Protos";
+option csharp_namespace = "NPitaya.Protos";
 
 message DocMsg {
     bool getProtos = 1;
