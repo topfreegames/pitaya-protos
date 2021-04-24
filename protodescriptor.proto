@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package protos;
 option csharp_namespace = "NPitaya.Protos";
+option go_package = "github.com/topfreegames/pitaya/pkg/protos";
 
 // Descriptor proto used to retrieve zipped proto descriptors remotely
 message ProtoDescriptor {
