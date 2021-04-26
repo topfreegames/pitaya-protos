@@ -1,0 +1,27 @@
+syntax = "proto3";
+package protos;
+option go_package = "github.com/topfreegames/pitaya/pkg/protos";
+
+import "error.proto";
+
+message StartPitayaRequest {
+  ServerConfig config = 1;
+
+  message ServerConfig {
+    bool isFrontend = 1;
+    string serverType = 2;
+    map<string, string> metadata = 3;
+    bool shouldCompressMessages = 4;
+    bool debugLog = 5;
+    // TODO
+    // service discovery
+    // rpc module
+    // cluster mode
+    // other configs
+  }
+}
+
+service Sidecar {
+  rpc StartPitaya(StartPitayaRequest) returns (Error);
+  // AddRoute
+}
