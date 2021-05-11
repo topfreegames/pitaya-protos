@@ -3,6 +3,12 @@ package protos;
 option go_package = "github.com/topfreegames/pitaya/pkg/protos";
 
 import "error.proto";
+import "msg.proto";
+import "response.proto";
+import "request.proto";
+import "google/protobuf/empty.proto";
+
+// TODO split messages into their own protos
 
 message StartPitayaRequest {
   ServerConfig config = 1;
@@ -21,7 +27,27 @@ message StartPitayaRequest {
   }
 }
 
+message RequestTo{
+  string serverID = 1;
+  Msg msg = 2;
+}
+
+message RPCResponse{
+  uint64 reqId = 1;
+  Response res = 2;
+  Error err = 3;
+}
+
+message SidecarRequest{
+  uint64 reqId = 1;
+  Request req = 2;
+}
+
 service Sidecar {
+  rpc ListenRPC(stream RPCResponse) returns (stream SidecarRequest);
+  rpc SendRPC(Msg) returns (Response);
+  rpc SendRPCTo(RequestTo) returns (Response);
   rpc StartPitaya(StartPitayaRequest) returns (Error);
+  rpc StopPitaya(google.protobuf.Empty) returns (Error);
   // AddRoute
 }
