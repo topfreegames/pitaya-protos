@@ -22,7 +22,6 @@ message StartPitayaRequest {
     bool shouldCompressMessages = 5;
     bool debugLog = 6;
     // TODO
-    // service discovery
     // rpc module
     // cluster mode
     // other configs
@@ -47,8 +46,7 @@ message SidecarRequest{
 
 service Sidecar {
   rpc ListenRPC(stream RPCResponse) returns (stream SidecarRequest);
-  rpc SendRPC(Msg) returns (Response);
-  rpc SendRPCTo(RequestTo) returns (Response);
+  rpc SendRPC(RequestTo) returns (Response);
   rpc StartPitaya(StartPitayaRequest) returns (Error);
   rpc StopPitaya(google.protobuf.Empty) returns (Error);
   // AddRoute
