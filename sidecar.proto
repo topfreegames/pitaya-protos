@@ -13,21 +13,23 @@ import "google/protobuf/empty.proto";
 
 // TODO split messages into their own protos
 
-message StartPitayaRequest {
-  ServerConfig config = 1;
-
-  message ServerConfig {
+message Server {
     string id = 1;
-    bool isFrontend = 2;
-    string serverType = 3;
+    bool frontend = 2;
+    string type = 3;
     map<string, string> metadata = 4;
-    bool shouldCompressMessages = 5;
-    bool debugLog = 6;
+    string hostname = 5;
     // TODO
     // rpc module
     // cluster mode
     // other configs
   }
+
+
+message StartPitayaRequest {
+  Server config = 1;
+  bool shouldCompressMessages = 2;
+  bool debugLog = 3;
 }
 
 message RequestTo{
@@ -67,6 +69,7 @@ service Sidecar {
   rpc SendRPC(RequestTo) returns (Response);
   rpc SendPush(PushRequest) returns (PushResponse);
   rpc SendKick(KickRequest) returns (PushResponse);
+  rpc GetServer(Server) returns (Server);
 
   rpc StartPitaya(StartPitayaRequest) returns (Error);
   rpc StopPitaya(google.protobuf.Empty) returns (Error);
