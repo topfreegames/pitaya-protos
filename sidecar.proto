@@ -4,6 +4,8 @@ option csharp_namespace = "NPitaya.Protos";
 option go_package = "github.com/topfreegames/pitaya/pkg/protos";
 
 import "error.proto";
+import "push.proto";
+import "kick.proto";
 import "msg.proto";
 import "response.proto";
 import "request.proto";
@@ -44,9 +46,28 @@ message SidecarRequest{
   Request req = 2;
 }
 
+message PushRequest{
+// TODO I think this field is not needed if we use nats only
+  string frontendType = 2;
+  Push push = 3;
+}
+
+message PushResponse {
+  repeated string failedUids = 1;
+  bool hasFailed = 2;
+}
+
+message KickRequest{
+  string frontendType = 2;
+  KickMsg kick = 3;
+}
+
 service Sidecar {
   rpc ListenRPC(stream RPCResponse) returns (stream SidecarRequest);
   rpc SendRPC(RequestTo) returns (Response);
+  rpc SendPush(PushRequest) returns (PushResponse);
+  rpc SendKick(KickRequest) returns (PushResponse);
+
   rpc StartPitaya(StartPitayaRequest) returns (Error);
   rpc StopPitaya(google.protobuf.Empty) returns (Error);
   // AddRoute
