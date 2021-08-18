@@ -73,13 +73,13 @@ message KickRequest{
 }
 
 service Sidecar {
+  rpc GetServer(Server) returns (Server);
+  rpc Heartbeat(google.protobuf.Empty) returns(google.protobuf.Empty);
   rpc ListenRPC(stream RPCResponse) returns (stream SidecarRequest);
   rpc ListenSD(google.protobuf.Empty) returns (stream SDEvent);
   rpc SendRPC(RequestTo) returns (Response);
   rpc SendPush(PushRequest) returns (PushResponse);
   rpc SendKick(KickRequest) returns (PushResponse);
-  rpc GetServer(Server) returns (Server);
-
   rpc StartPitaya(StartPitayaRequest) returns (Error);
   rpc StopPitaya(google.protobuf.Empty) returns (Error);
   // AddRoute
