@@ -35,8 +35,6 @@ message StartPitayaRequest {
   Server config = 1;
   bool shouldCompressMessages = 2;
   bool debugLog = 3;
-  // cluster mode
-  // other configs
   // rpc module
 }
 
